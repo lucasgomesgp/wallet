@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 100vh;
+    .wallet {
+        .title {
+            color: #000000;
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+    .form {
+        background-color: #8712e0;
+        .titleRegister {
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .register {
+            background-color: #3ae374;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            &:disabled {
+                cursor: not-allowed;
+                background: #d1d1d1;
+            }
+        }
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            a {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+        }
+
+        .terms {
+            color: #FFFFFF;
+            font-weight: bold;
+
+            label{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 0;
+                margin: 0;
+            }
+            a{
+                color: #150BD9;
+                text-decoration: underline;
+            }
+
+            input[type='checkbox']{
+                accent-color: #0000ff;
+            }
+        }
+    }
+}

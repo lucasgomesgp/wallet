@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    background-color: #fffff0;
+    z-index: 5;
+    color: #000000;
+    width: 18%;
+    box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.9);
+    
+    .user {
+        flex: 1;
+        margin-top: 0.4rem;
+        text-align: center;
+
+        .userImg{
+            border-radius: 50%;
+        }
+        .subTitle {
+            font-weight: bold;
+        }
+    }
+    .menu {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+        width: 100%;
+
+        .menuItem {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+
+            .titleMenu {
+                display: flex;
+                align-items: center;
+                gap: 1.2rem;
+                color: #000;
+                width: 100%;
+                padding: 0.7rem;
+
+                &:hover{
+                    background-color: #dadada;
+                    color: #a229ff;
+                }
+            }
+            .subMenu {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+
+                .subMenuTitle {
+                    width: 100%;
+                    margin-top: 0.2rem;
+                    text-align: left;
+                    height: 2.2rem;
+                    text-align: center;
+                    margin: auto;
+                    &:hover{
+                        background-color: #a9a8a8;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                        
+                        &:hover{
+                            color: #a229ff;
+                        }
+                    }
+                }
+            }
+        }
+        .active {
+            color: #ffffff;
+            transition: background-color 100ms ease-in-out;
+
+            &:hover {
+                background-color: #a229ff;
+            }
+        }
+    }
+
+    .exitApp {
+        flex: 2;
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e80000;
+        color: #ffffff;
+        gap: 1rem;
+        cursor: pointer;
+        transition: filter 200ms ease-in-out;
+
+        &:hover {
+            filter: brightness(0.5);
+        }
+    }
+}

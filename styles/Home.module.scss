@@ -1,0 +1,139 @@
+@use "./keyframes";
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100vh;
+    color: #ffffff;
+    .wallet {
+        .title {
+            color: #000000;
+        }
+        &_img {
+            width: 100%;
+        }
+        .svgWallet{
+            #coin{
+                animation: animateCoin 1s ease-in-out infinite alternate;
+            }
+            #bitcoin{
+                animation: animateBitcoin 1s 1s ease-in-out infinite alternate;
+            }
+            #walletIcon{
+                animation: animateWallet 1s 2s ease-in-out infinite alternate;
+            }
+            #card{
+                animation: animateCard 1s 3s ease-in-out infinite alternate;
+            }
+        }
+    }
+
+    .form {
+        background-color: #8712e0;
+        .inptForm{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .titleLogin {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .login {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            margin: 0 auto;
+            background-color: #3ae374;
+            border: none;
+            transition: 100ms ease-in-out;
+
+            &:hover {
+                background-color: #03fd5a;
+                width: 99%;
+                color: #000000;
+            }
+        }
+
+        .or {
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 40%;
+                height: 2px;
+                top: 10px;
+                right: 0;
+                background-color: #ffffff;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                width: 40%;
+                height: 2px;
+                top: 10px;
+                left: 0;
+                background-color: #ffffff;
+            }
+        }
+
+        .google {
+            position: relative;
+            transition: 200ms ease-in-out;
+            &:hover {
+                padding: 0.2rem;
+                background-color: #fff;
+            }
+            .wrap {
+                position: absolute;
+                width: 3.125rem;
+                height: 3.125rem;
+                background-color: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btnGoogle {
+                border: none;
+                background-color: #00d8d6;
+                color: #ffffff;
+                font-weight: bold;
+                font-size: 0.9375rem;
+            }
+        }
+
+        .create {
+            text-align: center;
+            font-weight: bold;
+
+            a {
+                color: #00d8d6;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .passwordArea {
+        position: relative;
+
+        .visibility {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        svg {
+            &:hover {
+                fill: #000000;
+            }
+        }
+    }
+}
+

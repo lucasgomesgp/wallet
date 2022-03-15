@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+    
+    img{
+        width: 50%;
+    }
+    h1, p{
+        color: #000000;
+    }
+
+    .back{
+        font-size: 1.4rem;
+        font-weight: bold;
+        background-color: blue;
+        padding: 1rem;
+        width: 12rem;
+        color: #FFFFFF;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            color: #000000;
+        }
+    }
+
+}
