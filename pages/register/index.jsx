@@ -44,7 +44,7 @@ export default function Register() {
       <Meta title="Register" />
       <main className={styles.container}>
         <div className={styles.wallet}>
-          <h1 className={styles.title}>WALLET - Criar conta</h1>
+          <h1 className={styles.title}>Criar conta</h1>
           <Image layout="intrinsic" width={700} height={500} src={newImg} alt="Wallet" />
         </div>
         <form className={`${styles.form} form-bg`} onSubmit={handleSubmit}>

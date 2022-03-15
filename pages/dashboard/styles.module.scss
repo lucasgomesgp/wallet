@@ -1,0 +1,27 @@
+.container {
+    background-color: #E5E5E5;
+    width: 100%;
+
+    .central {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+
+        .graph {
+            flex: 0.8;
+            .entry,
+            .out {
+                background-color: #FFFFFF;
+                margin: 0 auto;
+            }
+            
+            .entry {
+                width: 60%;
+            }
+            .out {
+                width: 60%;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

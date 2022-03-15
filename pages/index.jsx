@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 export default function Login() {
   const user = useSelector((state) => state.auth.user);
+  const status = useSelector((state) => state.auth.loggedIn);
 
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -22,7 +23,9 @@ export default function Login() {
 
   const loginGoogle = async () => {
     await dispatch(loginWithGoogle());
-    if (user.email) {
+    if (status) {
+      router.push("/");
+    }else{
       router.push("/dashboard");
     }
   };
