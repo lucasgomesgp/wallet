@@ -25,13 +25,25 @@ export const signInWithEmail = createAsyncThunk(
     async ({ email, password }) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, email, password);
+            // window.location.pathname = "/dashboard";
             return user;
         } catch (err) {
-            if (err.code === "auth/wrong-password" || err.code === "auth/invalid-email") {
-                toast.error("Email ou senha incorreto!");
-            } else {
-                toast.error("Erro ao tentar fazer login com email");
+            let message = "";
+            switch (err.code) {
+                case "auth/user-not-found":
+                    message = "Usuário não encontrado";
+                    break;
+                case "auth/wrong-password":
+                    message = "Senha incorreta!";
+                    break;
+                case "auth/invalid-email":
+                    message = "Email inválido!";
+                    break;
+                default:
+                    message = "Erro ao tentar fazer login com email";
+                    break;
             }
+            toast.error(message);
             return err;
         }
     }
@@ -48,9 +60,6 @@ const authSlice = createSlice({
         }
     },
     reducers: {
-        loginWithEmailAndPassword(state, action) {
-
-        },
         createNewUser(state, action) {
             const { email, password } = action.payload;
             createUserWithEmailAndPassword(auth, email, password)
@@ -62,10 +71,10 @@ const authSlice = createSlice({
                 }).catch((error) => {
                     toast.error(error.message);
                 });
-
         },
-        signout(state, action) {
-
+        logout(state) {
+            state.user = {};
+            state.loggedIn = false;
         }
     },
     extraReducers: {
@@ -91,21 +100,21 @@ const authSlice = createSlice({
             state.loggedIn = true;
             state.user = {
                 displayName: displayName || "",
-                email,
+                email: email || "",
                 photoURL: photoURL || "",
-                uid
+                uid: uid || ""
             };
             if (email) {
                 toast.success("Login com sucesso!");
             }
         },
-        [signInWithEmail.rejected]: (state, action) => {
+        [signInWithEmail.rejected]: (state) => {
             state.loggedIn = false;
             state.user = {};
         }
     }
 });
 
-export const { loginWithEmailAndPassword, createNewUser, signout } = authSlice.actions;
+export const { createNewUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;

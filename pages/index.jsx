@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdSupervisedUserCircle, MdRemoveRedEye, MdFingerprint, MdVisibilityOff } from "react-icons/md";
@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 
 export default function Login() {
   const user = useSelector((state) => state.auth.user);
-  const status = useSelector((state) => state.auth.loggedIn);
 
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -23,11 +22,6 @@ export default function Login() {
 
   const loginGoogle = async () => {
     await dispatch(loginWithGoogle());
-    if (status) {
-      router.push("/");
-    }else{
-      router.push("/dashboard");
-    }
   };
   const loginWithEmailAndPassword = async (event) => {
     event.preventDefault();
@@ -39,6 +33,13 @@ export default function Login() {
     }
   }
 
+  useEffect(() => {
+    if (!user.email) {
+      router.push("/");
+    } else {
+      router.push("/dashboard");
+    }
+  }, [user.email]);
   return (
     <>
       <Meta title="Login" />
