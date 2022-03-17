@@ -41,10 +41,10 @@ export function Header() {
               <Link href="/dashboard">Dashboard</Link>
             </li>
             <li className={styles.item}>
-              <Link href="/entry">Entradas</Link>
+              <Link href="/dashboard/entry">Entradas</Link>
             </li>
             <li className={styles.item}>
-              <Link href="/out">Saídas</Link>
+              <Link href="/dashboard/out">Saídas</Link>
             </li>
             <li className={styles.item}>
               <button onClick={handleLogout}>Sair</button>

@@ -48,11 +48,18 @@
             .out {
                 background-color: #FFFFFF;
                 margin: 0 auto;
+                width: 90%;
             }
             
             .out {
                 margin-top: 1rem;
             }
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .graph{
+        margin: 0 auto;
     }
 }

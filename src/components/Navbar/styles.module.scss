@@ -17,7 +17,7 @@
         align-items: center;
         flex-direction: column;
         list-style: none;
-
+        width: 100%;
         .item {
             width: 100%;
             height: 100%;
@@ -26,14 +26,18 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-
+            padding: 0.5rem;
             &:hover{
                 background-color: #dadada;
             }
             a {
                 text-decoration: none;
                 color: #000000;
-                padding: 2rem 4rem;
+                display: block;
+                text-align: left;
+                width: 100%;
+                padding: 0.5rem;
+
             }
         }
         .active {
@@ -75,5 +79,12 @@
                 font-size: 24px;
             }
         }
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    .container{
+        display: none;
     }
 }

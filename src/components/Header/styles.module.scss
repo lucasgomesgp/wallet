@@ -58,17 +58,20 @@
                 text-align: center;
                 a,
                 button {
-                    display: inline-block;
                     padding: 0.8rem 4.5rem;
                     cursor: pointer;
                     border: none;
                     color: #000000;
                     letter-spacing: 1px;
                 }
+                a {
+                    display: block;
+                }
                 button {
                     font-size: 1.2rem;
                     font-weight: bold;
                     background-color: #bfbfbf;
+                    width: 100%;
                 }
                 &:last-child {
                     border-bottom: none;

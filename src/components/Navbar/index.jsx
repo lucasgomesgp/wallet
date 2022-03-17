@@ -27,13 +27,13 @@ export function Navbar() {
         </li>
         <li className={styles.item}>
           <MdMonetizationOn size={30} className={styles.icon} />
-          <Link href="/entry" className={styles.itemMenu}>
+          <Link href="/dashboard/entry" className={styles.itemMenu}>
             Entradas
           </Link>
         </li>
         <li className={styles.item}>
           <MdOutlineAutorenew size={30} className={styles.icon} />
-          <Link href="/out" className={styles.itemMenu}>
+          <Link href="/dashboard/out" className={styles.itemMenu}>
             Saídas
           </Link>
         </li>
