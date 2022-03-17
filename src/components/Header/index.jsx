@@ -8,7 +8,9 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link href="/dashboard">
-          <Image src={walletImg} objectFit="contain" />
+          <a>
+            <Image src={walletImg} objectFit="contain" />
+          </a>
         </Link>
         <h2 className={styles.title}>Wallet</h2>
       </div>

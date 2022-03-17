@@ -51,9 +51,7 @@ export default function Register() {
           <h3 className={styles.titleRegister}>Informações</h3>
           <div className={styles.back}>
             <Link href="/">
-              <a>
-                <BsFillArrowLeftSquareFill size={30} className={styles.arrowBack} />
-              </a>
+              <BsFillArrowLeftSquareFill size={30} className={styles.arrowBack} />
             </Link>
             <Link href="/">Voltar</Link>
           </div>

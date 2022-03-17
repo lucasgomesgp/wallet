@@ -1,0 +1,32 @@
+.container{
+    height: 170px;
+    border-radius: 10px;
+    flex: 1;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 4px 4px  rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    .texts{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding-top: 1rem;
+        
+        .typeArea{
+            width: 5rem;
+            height: 3rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .title{
+            font-size: 30px;
+        }
+    }
+
+    .money{
+        text-align: center;
+        font-size: 30px;
+        padding-top: 1.4rem;
+    }
+}
