@@ -3,17 +3,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import walletImg from "../../../public/icons/wallet_sm.svg";
 import { logout } from "../../app/auth-slice";
 import styles from "./styles.module.scss";
 
 export function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const { displayName, photoURL } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  function handleLogout() {
+  const handleLogout = () => {
     dispatch(logout());
     router.push("/");
   }
@@ -32,8 +33,8 @@ export function Header() {
         <h2 className={styles.title}>Wallet</h2>
       </div>
       <div className={styles.exitArea}>
-        <div className={styles.image} />
-        <h3 className={styles.name}>Nome</h3>
+        <Image src={photoURL || "/icon.png"} className={styles.image} width={40} height={40} objectFit="contain" />
+        <h3 className={styles.name}>{displayName || "Bem vindo!"}</h3>
         <IoMdArrowDropdownCircle size={30} className={styles.toggleMenu} onClick={handleToggleMenu} />
         {toggleMenu ? (
           <ul className={styles.menuToggle}>
