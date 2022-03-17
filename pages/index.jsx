@@ -232,6 +232,7 @@ export default function Login() {
                 placeholder="Email"
                 autoComplete="off"
                 value={email}
+                autoFocus
                 onChange={(event) => { setEmail(event.target.value) }}
               />
             </div>

@@ -25,7 +25,6 @@ export const signInWithEmail = createAsyncThunk(
     async ({ email, password }) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, email, password);
-            // window.location.pathname = "/dashboard";
             return user;
         } catch (err) {
             let message = "";
