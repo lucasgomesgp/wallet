@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { Meta } from "../../src/components/Meta";
 import "chart.js/auto";
@@ -7,8 +7,10 @@ import { Header } from "../../src/components/Header";
 import { Navbar } from "../../src/components/Navbar";
 import styles from "./styles.module.scss";
 import Operation from "../../src/components/Operation";
+import protectedRoute from "../../src/components/ProtectedRoute";
 
-export default function Dashboard() {
+function Dashboard() {
+
   const [entryData, setEntryData] = useState({
     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Setembro", "Outubro", "Novembro", "Dezembro"],
     datasets: [
@@ -62,3 +64,5 @@ export default function Dashboard() {
     </>
   );
 }
+
+export default protectedRoute(Dashboard);

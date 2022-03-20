@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { auth, provider } from "../../services/firebase.config";
 import toast from "react-hot-toast";
 
@@ -60,10 +60,11 @@ const authSlice = createSlice({
     },
     reducers: {
         createNewUser(state, action) {
-            const { email, password } = action.payload;
+            const { email, password, fullName } = action.payload;
             createUserWithEmailAndPassword(auth, email, password)
                 .then((credentials) => {
                     const user = credentials.user;
+                    user.displayName = fullName;
                     window.location.pathname = "/";
                     toast.success("Usuário criado com sucesso!");
 

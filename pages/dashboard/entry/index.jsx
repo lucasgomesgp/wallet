@@ -1,6 +1,7 @@
 import { Header } from "../../../src/components/Header";
 import { Meta } from "../../../src/components/Meta";
-export default function Entry() {
+import protectedRoute from "../../../src/components/ProtectedRoute";
+function Entry() {
   return (
     <>
       <Meta title="Entry" />
@@ -9,3 +10,4 @@ export default function Entry() {
     </>
   )
 }
+export default protectedRoute(Entry);
