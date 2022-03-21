@@ -9,7 +9,7 @@ const protectedRoute = (Component) => (props) => {
     const user = useSelector((state) => state.auth.user);
 
     useEffect(() => {
-        if (!loggedIn || user.email) {
+        if (!loggedIn || !user.email) {
             Router.push("/");
             toast.error("Para acessar essa página é necessário fazer login primeiro!");
         }
