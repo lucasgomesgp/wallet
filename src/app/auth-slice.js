@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {createCookie, deleteCookie} from "../../services/token";
 import { auth, provider } from "../../services/firebase.config";
 import toast from "react-hot-toast";
 
@@ -75,11 +76,12 @@ const authSlice = createSlice({
         logout(state) {
             state.user = {};
             state.loggedIn = false;
+            deleteCookie();
         }
     },
     extraReducers: {
         [loginWithGoogle.fulfilled]: (state, action) => {
-            const { displayName, email, photoURL, uid } = action.payload;
+            const { displayName, email, photoURL, uid, accessToken: token } = action.payload;
             state.loggedIn = true;
             state.user = {
                 displayName,
@@ -88,7 +90,8 @@ const authSlice = createSlice({
                 uid
             };
             if (email) {
-                toast.success("Login com sucesso!");
+                toast.success("Login com Google realizado com sucesso!");
+                createCookie(token);
             }
         },
         [loginWithGoogle.rejected]: (state) => {
@@ -96,7 +99,7 @@ const authSlice = createSlice({
             state.user = {};
         },
         [signInWithEmail.fulfilled]: (state, action) => {
-            const { displayName, email, photoURL, uid } = action.payload;
+            const { displayName, email, photoURL, uid, accessToken: token } = action.payload;
             state.loggedIn = true;
             state.user = {
                 displayName: displayName || "",
@@ -106,6 +109,7 @@ const authSlice = createSlice({
             };
             if (email) {
                 toast.success("Login com sucesso!");
+                createCookie(token);
             }
         },
         [signInWithEmail.rejected]: (state) => {

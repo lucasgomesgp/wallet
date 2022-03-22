@@ -1,7 +1,7 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import walletImg from "../../../public/icons/wallet_sm.svg";
@@ -16,7 +16,7 @@ export function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
-    router.push("/");
+    window.location.pathname = "/";
   }
 
   const handleToggleMenu = () => {
