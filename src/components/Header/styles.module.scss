@@ -1,6 +1,8 @@
+@import "../../../styles/variables";
+
 .header {
     width: 100%;
-    background-color: #575a88;
+    background-color: $header;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,14 +15,14 @@
         align-items: center;
         cursor: pointer;
         .title {
-            color: #ffffff;
+            color: $white;
         }
     }
     .exitArea {
         height: 70%;
         width: 18rem;
         padding: 1rem;
-        background-color: #ffffff;
+        background-color: $white;
         display: flex;
         align-items: center;
         justify-content: space-around;
@@ -37,7 +39,7 @@
         .image {
             width: 40px;
             height: 40px;
-            background-color: #575a88;
+            background-color: $user-area;
             border-radius: 50%;
         }
 
@@ -48,12 +50,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #ffffff;
-            box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.7);
+            background-color: $white;
+            box-shadow: 0 0 4px 1px $shadow;
 
             .item {
                 font-weight: bold;
-                border-bottom: 1px solid #000000;
+                border-bottom: 1px solid $black;
                 width: 100%;
                 text-align: center;
 
@@ -62,7 +64,7 @@
                     padding: 0.8rem 4.5rem;
                     cursor: pointer;
                     border: none;
-                    color: #000000;
+                    color: $black;
                     letter-spacing: 1px;
                 }
                 a {
@@ -71,15 +73,15 @@
                 button {
                     font-size: 1.2rem;
                     font-weight: bold;
-                    background-color: #ffffff;
+                    background-color: $white;
                     width: 100%;
                 }
                 &,
                 button,
                 a {
                     &:hover {
-                        background-color: #afafaf;
-                        color: #ffffff;
+                        background-color: $gray-secondary;
+                        color: $white;
                     }
                 }
                 &:last-child {

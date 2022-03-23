@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .container {
     display: flex;
     align-items: center;
@@ -8,28 +10,28 @@
 
     .wallet {
         .title {
-            color: #000000;
+            color: $black;
         }
         img {
             max-width: 100%;
         }
     }
     .form {
-        background-color: #8712e0;
+        background-color: $primary;
         .titleRegister {
             text-align: center;
-            color: #FFFFFF;
+            color: $white;
         }
         .register {
-            background-color: #3ae374;
+            background-color: $success-btn;
             border: none;
-            color: #ffffff;
+            color: $white;
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             &:disabled {
                 cursor: not-allowed;
-                background: #d1d1d1;
+                background: $gray;
             }
         }
 
@@ -39,13 +41,13 @@
             gap: 1rem;
             cursor: pointer;
             a {
-                color: #FFFFFF;
+                color: $white;
                 font-weight: bold;
             }
         }
 
         .terms {
-            color: #FFFFFF;
+            color: $white;
             font-weight: bold;
 
             label{
@@ -57,12 +59,12 @@
                 margin: 0;
             }
             a{
-                color: #150BD9;
+                color: $blue-secondary;
                 text-decoration: underline;
             }
 
             input[type='checkbox']{
-                accent-color: #0000ff;
+                accent-color: $blue;
             }
         }
     }

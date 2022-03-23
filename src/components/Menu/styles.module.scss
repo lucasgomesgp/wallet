@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .container {
     display: flex;
     height: 100vh;
@@ -5,11 +7,11 @@
     left: 0;
     top: 0;
     flex-direction: column;
-    background-color: #fffff0;
+    background-color: $white-tertiary;
     z-index: 5;
-    color: #000000;
+    color: $black;
     width: 18%;
-    box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 14px 2px $shadow-menu;
     
     .user {
         flex: 1;
@@ -44,13 +46,13 @@
                 display: flex;
                 align-items: center;
                 gap: 1.2rem;
-                color: #000;
+                color: $black;
                 width: 100%;
                 padding: 0.7rem;
 
                 &:hover{
-                    background-color: #dadada;
-                    color: #a229ff;
+                    background-color: $gray-tertiary;
+                    color: $primary-secondary;
                 }
             }
             .subMenu {
@@ -67,26 +69,27 @@
                     height: 2.2rem;
                     text-align: center;
                     margin: auto;
+
                     &:hover{
-                        background-color: #a9a8a8;
+                        background-color: $hover-subtitle;
                     }
                     a {
                         text-decoration: none;
-                        color: #000;
+                        color: $black;
                         
                         &:hover{
-                            color: #a229ff;
+                            color: $primary-secondary
                         }
                     }
                 }
             }
         }
         .active {
-            color: #ffffff;
+            color: $white;
             transition: background-color 100ms ease-in-out;
 
             &:hover {
-                background-color: #a229ff;
+                background-color: $primary-secondary;
             }
         }
     }
@@ -98,8 +101,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #e80000;
-        color: #ffffff;
+        background-color: $red;
+        color: $white;
         gap: 1rem;
         cursor: pointer;
         transition: filter 200ms ease-in-out;
