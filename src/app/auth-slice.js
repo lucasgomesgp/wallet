@@ -77,6 +77,10 @@ const authSlice = createSlice({
             state.user = {};
             state.loggedIn = false;
             deleteCookie();
+        },
+        userHasLogin(state, action){
+            state.user = action.payload.user;
+            state.loggedIn = true;
         }
     },
     extraReducers: {
@@ -119,6 +123,6 @@ const authSlice = createSlice({
     }
 });
 
-export const { createNewUser, logout } = authSlice.actions;
+export const { createNewUser, logout, userHasLogin } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -10,7 +10,7 @@ export function createCookie(token) {
             token,
         }
     }).then((res) => {
-        console.log(res);
+        console.log("Deu certo!")
     }).catch(err => { console.log(err) });
 }
 
@@ -19,4 +19,15 @@ export function deleteCookie() {
         data: {}
     }).then((res) => {
     }).catch(err => { console.log(err) });
+}
+
+export async function getCookie() {
+    try {
+        const response = await api.get("/cookie");
+        const { user } = response.data;
+        return user;
+    } catch (err) {
+        console.log("Erro ao buscar!");
+        return;
+    }
 }

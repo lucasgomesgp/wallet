@@ -6,18 +6,15 @@ import toast from "react-hot-toast";
 import styles from "../styles/Home.module.scss";
 import { Meta } from "../src/components/Meta";
 import { loginWithGoogle, signInWithEmail } from "../src/app/auth-slice";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
-  const user = useSelector((state) => state.auth.user);
-
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
   const loginGoogle = async () => {
@@ -34,10 +31,10 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (!user.email) {
-      router.push("/");
-    } else {
+    if (user.email) {
       router.push("/dashboard");
+    } else {
+      router.push("/");
     }
   }, [user.email]);
   return (

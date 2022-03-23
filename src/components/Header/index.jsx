@@ -24,14 +24,12 @@ export function Header() {
   }
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        <Link href="/dashboard">
-          <a>
-            <Image src={walletImg} objectFit="contain" />
-          </a>
-        </Link>
-        <h2 className={styles.title}>Wallet</h2>
-      </div>
+      <Link href="/dashboard">
+        <div className={styles.logo}>
+          <Image src={walletImg} objectFit="contain" />
+          <h2 className={styles.title}>Wallet</h2>
+        </div>
+      </Link>
       <div className={styles.exitArea}>
         <Image src={photoURL || "/icon.png"} className={styles.image} width={40} height={40} objectFit="contain" />
         <h3 className={styles.name}>{displayName || "Bem vindo!"}</h3>
