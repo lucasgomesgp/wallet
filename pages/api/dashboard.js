@@ -4,7 +4,7 @@ export default (req, res) => {
     const { token } = req.body.data;
     res.setHeader("Set-Cookie",
         cookie.serialize("auth_token", token, {
-            maxAge: 7200,
+            maxAge: 86400,
             path: "/",
             secure: true,
             httpOnly: true,

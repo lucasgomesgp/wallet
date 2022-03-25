@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.container {
+    @include area-container;
+    background-color: $primary;
+    color: $white;
+    padding: 1rem;
+    cursor: pointer;
+
+    .title {
+        @include title;
+        width: 50%;
+        line-height: 1.4;
+    }
+
+    .icon {
+        background-color: $white;
+        @include icon;
+    }
+}

@@ -36,10 +36,10 @@ function Dashboard() {
   return (
     <>
       <Meta title="Dashboard" />
+      <Header />
+      <Navbar />
       <main className={styles.container}>
-        <Header />
         <section className={styles.central}>
-          <Navbar />
           <section className={styles.graph}>
             <div className={styles.values}>
               <div className={styles.total}>

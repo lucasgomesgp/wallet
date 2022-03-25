@@ -1,12 +1,21 @@
+import { CardCreate } from "../../../src/components/CardCreate";
 import { Header } from "../../../src/components/Header";
+import { ListOperation } from "../../../src/components/ListOperation";
 import { Meta } from "../../../src/components/Meta";
+import { Navbar } from "../../../src/components/Navbar";
 import protectedRoute from "../../../src/components/ProtectedRoute";
+import styles from "./styles.module.scss";
+
 function Entry() {
   return (
     <>
       <Meta title="Entry" />
       <Header />
-      <div>Entry</div>
+      <Navbar />
+      <main className={styles.operations}>
+        <ListOperation type="entry" />
+        <CardCreate type="entry" />
+      </main>
     </>
   )
 }

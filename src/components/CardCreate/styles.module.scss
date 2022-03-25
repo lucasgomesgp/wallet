@@ -1,0 +1,23 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.container {
+    background-color: $white;
+    @include area-container;
+    cursor: pointer;
+    .title {
+        @include title;
+        width: 40%;
+        line-height: 1.4;
+    }
+
+    .icon {
+        @include icon;
+    }
+    .red{
+        background-color: $red;
+    }
+    .green{
+        background-color: $green-light;
+    }
+}

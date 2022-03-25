@@ -3,22 +3,25 @@
 .container {
     background-color: $white-secondary;
     width: 100%;
+    padding-top: 6.5rem;
+
     .central {
         display: flex;
         gap: 1rem;
         padding: 1rem;
-
+        // width: 70%;
+        margin: 2rem auto;
         .graph {
-            flex: 0.8;
+            flex: 1;
 
-            .values{
+            .values {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1rem;
                 margin-bottom: 2rem;
             }
 
-            .total{
+            .total {
                 background-color: $primary;
                 padding: 1rem;
                 height: 170px;
@@ -26,20 +29,20 @@
                 flex: 1;
                 font-weight: bold;
 
-                .texts{
+                .texts {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     gap: 1rem;
                     padding-top: 1rem;
 
-                    .title{
+                    .title {
                         font-size: 36px;
                         color: $white;
                     }
                 }
 
-                .money{
+                .money {
                     text-align: center;
                     font-size: 30px;
                     color: $white;
@@ -52,7 +55,7 @@
                 margin: 0 auto;
                 width: 90%;
             }
-            
+
             .out {
                 margin-top: 1rem;
             }
@@ -61,7 +64,15 @@
 }
 
 @media screen and (max-width: 768px) {
-    .graph{
+    .graph {
         margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .container {
+        .central {
+            margin: 0 0 0 18rem;
+        }
     }
 }

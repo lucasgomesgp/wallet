@@ -10,10 +10,8 @@ import styles from "./styles.module.scss";
 
 export function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const { displayName, photoURL } = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-  const router = useRouter();
-
   const handleLogout = () => {
     dispatch(logout());
     window.location.pathname = "/";
@@ -31,8 +29,8 @@ export function Header() {
         </div>
       </Link>
       <div className={styles.exitArea}>
-        <Image src={photoURL || "/icon.png"} className={styles.image} width={40} height={40} objectFit="contain" />
-        <h3 className={styles.name}>{displayName || "Bem vindo!"}</h3>
+        <Image src={user.photoURL || "/icon.png"} className={styles.image} width={40} height={40} objectFit="contain" priority/>
+        <h3 className={styles.name}>{user.displayName || "Bem vindo!"}</h3>
         <IoMdArrowDropdownCircle size={30} className={styles.toggleMenu} onClick={handleToggleMenu} />
         {toggleMenu ? (
           <ul className={styles.menuToggle}>

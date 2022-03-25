@@ -18,7 +18,7 @@ const protectedRoute = (Component) => (props) => {
             const userLoaded = await getCookie();
             setLoading(true);
             if (userLoaded !== undefined) {
-                const { email, user_id: uid, name: displayName, photoURL } = userLoaded;
+                const { email, user_id: uid, name: displayName, picture: photoURL } = userLoaded;
                 dispatch(userHasLogin({
                     user: {
                         email: email || "",
