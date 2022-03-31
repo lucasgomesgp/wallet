@@ -13,8 +13,8 @@ function Entry() {
       <Header />
       <Navbar />
       <main className={styles.operations}>
-        <ListOperation type="entry" />
-        <CardCreate type="entry" />
+        <ListOperation type="entry" path="/dashboard/entry/list"/>
+        <CardCreate type="entry" path="/dashboard/entry/new"/>
       </main>
     </>
   )

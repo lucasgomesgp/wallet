@@ -92,3 +92,11 @@
         }
     }
 }
+
+
+@media screen and (max-width:490px){
+    .header{
+        justify-content: center;
+        gap: 1rem;
+    }
+}
