@@ -33,9 +33,9 @@
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    margin: 8rem 20rem;
     width: 60%;
-    
+    margin: 8rem 20rem;
+
     @media screen and (max-width: 768px) {
         margin: 8rem auto;
     }
@@ -43,5 +43,28 @@
     @media screen and (max-width: 618px) {
         flex-wrap: wrap;
         gap: 0;
+    }
+}
+
+@mixin buttonOperation {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0.4rem;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+@mixin margins {
+    
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin: 14rem auto;
+        font-size: 1rem;
+    }
+    @media screen and (min-width: 769px){
+        margin: 8rem 18rem;
     }
 }

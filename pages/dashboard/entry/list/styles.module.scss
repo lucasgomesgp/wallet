@@ -1,0 +1,10 @@
+@import "../../../../styles/mixins";
+
+.container {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    width: 70%;
+    @include margins;
+    
+}
