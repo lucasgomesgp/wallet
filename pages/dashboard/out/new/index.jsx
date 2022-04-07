@@ -1,4 +1,5 @@
 
+import { FormOperation } from "../../../../src/components/FormOperation";
 import { Header } from "../../../../src/components/Header";
 import { Meta } from "../../../../src/components/Meta";
 import { Navbar } from "../../../../src/components/Navbar";
@@ -11,6 +12,7 @@ function NewOut() {
       <Meta title="NewOut" />
       <Header />
       <Navbar />
+      <FormOperation type="out" />
     </>
   )
 }

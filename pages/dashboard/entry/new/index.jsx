@@ -1,4 +1,4 @@
-
+import { FormOperation } from "../../../../src/components/FormOperation";
 import { Header } from "../../../../src/components/Header";
 import { Meta } from "../../../../src/components/Meta";
 import { Navbar } from "../../../../src/components/Navbar";
@@ -11,7 +11,8 @@ function NewEntry() {
       <Meta title="NewEntry" />
       <Header />
       <Navbar />
+      <FormOperation type="entry" />
     </>
-  )
+  );
 }
 export default protectedRoute(NewEntry);
