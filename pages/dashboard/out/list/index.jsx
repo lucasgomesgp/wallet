@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 function ListOut() {
   return (
     <>
-      <Meta title="ListOut" />
+      <Meta title="List Out's" />
       <Header />
       <Navbar />
     </>

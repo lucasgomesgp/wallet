@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 function NewEntry() {
   return (
     <>
-      <Meta title="NewEntry" />
+      <Meta title="New Entry" />
       <Header />
       <Navbar />
       <FormOperation type="entry" />

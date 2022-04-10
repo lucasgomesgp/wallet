@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 function NewOut() {
   return (
     <>
-      <Meta title="NewOut" />
+      <Meta title="New Out" />
       <Header />
       <Navbar />
       <FormOperation type="out" />

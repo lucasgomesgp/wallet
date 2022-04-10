@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 function ListEntry() {
   return (
     <>
-      <Meta title="ListEntry" />
+      <Meta title="List Entry's" />
       <Header />
       <Navbar />
       <table className={styles.container}>
