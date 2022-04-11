@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ref, set } from "firebase/database";
+import { ref, set, onValue } from "firebase/database";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { database } from "../../services/firebase.config";
@@ -15,6 +15,19 @@ export const createEntryOrOutOperation = createAsyncThunk(
     });
   }
 );
+
+export const getEntrysOrOuts = createAsyncThunk(
+  "operations/getEntryOrOut",
+  async ({ userId, type }) => {
+    const operationRef = ref(database, `operations/${userId}/${type}`);
+    onValue(operationRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        return data;
+      }
+    });
+  }
+);
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
@@ -26,10 +39,18 @@ const operationsSlice = createSlice({
   extraReducers: {
     [createEntryOrOutOperation.fulfilled]: (state) => {
       toast.success("Operação realizada com sucesso!");
+      window.location.pathname = "/dashboard/entry/list";
     },
     [createEntryOrOutOperation.rejected]: (state) => {
       toast.success("Problema na operação!");
     },
+    [getEntrysOrOuts.fulfilled]: (state, action) => {
+      state.entry = action.payload;
+    },
+    [getEntrysOrOuts.rejected]: (state, action) => {
+      toast.error("Erro ao buscar!");
+      state.entry = [];
+    }
   },
 });
 

@@ -4,11 +4,11 @@
 .line{
     td{
         padding: 1rem;
-        border-bottom: 1px solid $black;
+        border: 1px solid $black;
 
-        &:not(:last-child){
-            border-right: 1px solid $black;
-        }
+        // &:not(:last-child){
+        //     border-right: 1px solid $black;
+        // }
 
         .editBtn, .removeBtn{
             @include buttonOperation;
