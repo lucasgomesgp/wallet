@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { MdDashboard, MdOutlineAutorenew, MdMonetizationOn } from "react-icons/md";
+import { MdDashboard, MdOutlineAutorenew } from "react-icons/md";
+import { FaMoneyBillAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../app/auth-slice";
 import styles from "./styles.module.scss";
@@ -14,7 +15,7 @@ export function Navbar() {
     dispatch(logout());
     toast.success("Deslogado com sucesso!");
     router.push("/");
-  }
+  };
   return (
     <nav className={styles.container}>
       <ul className={styles.menu}>
@@ -26,13 +27,17 @@ export function Navbar() {
           <span />
         </li>
         <li className={styles.item}>
-          <MdMonetizationOn size={30} className={styles.icon} />
+          <FaMoneyBillAlt size={30} className={styles.icon} color="#5FE119" />
           <Link href="/dashboard/entry" className={styles.itemMenu}>
             Entradas
           </Link>
         </li>
         <li className={styles.item}>
-          <MdOutlineAutorenew size={30} className={styles.icon} />
+          <MdOutlineAutorenew
+            size={30}
+            className={styles.icon}
+            color="#C73331"
+          />
           <Link href="/dashboard/out" className={styles.itemMenu}>
             Saídas
           </Link>
@@ -46,5 +51,5 @@ export function Navbar() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }

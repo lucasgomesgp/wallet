@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ref, set, onValue } from "firebase/database";
+import { ref, set, child, get } from "firebase/database";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { database } from "../../services/firebase.config";
@@ -19,15 +19,27 @@ export const createEntryOrOutOperation = createAsyncThunk(
 export const getEntrysOrOuts = createAsyncThunk(
   "operations/getEntryOrOut",
   async ({ userId, type }) => {
-    const operationRef = ref(database, `operations/${userId}/${type}`);
-    onValue(operationRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
+    try {
+      const operationRef = ref(database);
+      const snapshot = await get(
+        child(operationRef, `operations/${userId}/${type}`)
+      );
+      let data = [];
+      snapshot.forEach((current) => {
+        let item = current.val();
+        item.key = current.key;
+        data.push(item);
+      });
+      if (snapshot.exists()) {
         return data;
       }
-    });
+    } catch (err) {
+      toast.error("Erro ao fazer a listagem!");
+      return err;
+    }
   }
 );
+
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
@@ -39,7 +51,13 @@ const operationsSlice = createSlice({
   extraReducers: {
     [createEntryOrOutOperation.fulfilled]: (state) => {
       toast.success("Operação realizada com sucesso!");
-      window.location.pathname = "/dashboard/entry/list";
+      let path = "";
+      if (window.location.pathname === "/dashboard/entry/new") {
+        path = "/dashboard/entry/list";
+      } else {
+        path = "/dashboard/out/list";
+      }
+      window.location.pathname = path;
     },
     [createEntryOrOutOperation.rejected]: (state) => {
       toast.success("Problema na operação!");
@@ -50,7 +68,7 @@ const operationsSlice = createSlice({
     [getEntrysOrOuts.rejected]: (state, action) => {
       toast.error("Erro ao buscar!");
       state.entry = [];
-    }
+    },
   },
 });
 

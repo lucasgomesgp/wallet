@@ -2,11 +2,12 @@ import moment from "moment";
 import { ListItem } from "../ListItem";
 import { formatMoney } from "../../../helpers/currency";
 import styles from "./styles.module.scss";
+import { Loading } from "../Loading";
 
-export function Table({ data }) {
+export function Table({ data, title }) {
   return (
     <table className={styles.container}>
-      <caption className={styles.caption}>Listagem</caption>
+      <caption className={styles.caption}>{title}</caption>
       <thead className={styles.title}>
         <tr className={styles.line}>
           <td>Data</td>
@@ -15,9 +16,9 @@ export function Table({ data }) {
           <td>Ações</td>
         </tr>
       </thead>
-      <tbody>
-        {data.length > 1 &&
-          data.map(({ date, description, value, id }) => (
+      {data.length > 0 ? (
+        <tbody>
+          {data.map(({ date, description, value, id }) => (
             <ListItem
               date={moment(date).format("DD/MM/YY [às] HH:mm")}
               description={description}
@@ -25,7 +26,10 @@ export function Table({ data }) {
               key={id}
             />
           ))}
-      </tbody>
+        </tbody>
+      ) : (
+        <Loading />
+      )}
     </table>
   );
 }

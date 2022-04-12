@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { createEntryOrOutOperation } from "../../app/operations-slice";
@@ -21,9 +20,9 @@ export function FormOperation({ type }) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  
-  const onSubmit = (event) => {
-    event.preventDefault();
+
+  const onSubmit = (data) => {
+    const { value, description, date } = data;
     dispatch(
       createEntryOrOutOperation({ userId, type, value, description, date })
     );
