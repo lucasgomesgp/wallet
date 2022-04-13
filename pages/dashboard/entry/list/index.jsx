@@ -22,7 +22,7 @@ function ListEntry() {
       <Meta title="List Entry's" />
       <Header />
       <Navbar />
-      <Table data={entrys} title="Listagem de entradas" />
+      <Table data={entrys} type="entry" title="Listagem de entradas" />
     </>
   );
 }

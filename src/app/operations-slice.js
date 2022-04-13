@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ref, set, child, get } from "firebase/database";
+import { ref, set, child, get, remove } from "firebase/database";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { database } from "../../services/firebase.config";
@@ -40,6 +40,20 @@ export const getEntrysOrOuts = createAsyncThunk(
   }
 );
 
+export const removeEntryOrOuts = createAsyncThunk(
+  "operations/removeEntryOrOuts",
+  async ({ userId, type, key }) => {
+    try {
+      await remove(ref(database, `operations/${userId}/${type}/${key}`));
+      toast.success("Removido com sucesso!");
+    } catch (err) {
+      toast.error(
+        `Erro ao remover a ${type === "entry" ? "entrada" : "saída"}!`
+      );
+      return err;
+    }
+  }
+);
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
@@ -76,6 +90,12 @@ const operationsSlice = createSlice({
       toast.error("Erro ao buscar!");
       state.entry = [];
       state.outflow = [];
+    },
+    [removeEntryOrOuts.fulfilled]: (state, action) => {
+      window.location.reload();
+    },
+    [removeEntryOrOuts.rejected]: (state, action) => {
+      window.location.reload();
     },
   },
 });
