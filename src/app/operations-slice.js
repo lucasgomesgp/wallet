@@ -63,11 +63,19 @@ const operationsSlice = createSlice({
       toast.success("Problema na operação!");
     },
     [getEntrysOrOuts.fulfilled]: (state, action) => {
-      state.entry = action.payload;
+      const {
+        meta: { arg },
+      } = action;
+      if (arg.type === "entry") {
+        state.entry = action.payload;
+      } else {
+        state.outflow = action.payload;
+      }
     },
     [getEntrysOrOuts.rejected]: (state, action) => {
       toast.error("Erro ao buscar!");
       state.entry = [];
+      state.outflow = [];
     },
   },
 });
