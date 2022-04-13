@@ -1,0 +1,17 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.line{
+    td{
+        padding: 1rem;
+        border: 1px solid $black;
+
+        // &:not(:last-child){
+        //     border-right: 1px solid $black;
+        // }
+
+        .editBtn, .removeBtn{
+            @include buttonOperation;
+        }
+    }
+}

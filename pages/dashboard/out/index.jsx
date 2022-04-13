@@ -13,8 +13,8 @@ function Out() {
       <Header />
       <Navbar />
       <main className={styles.operations}>
-        <ListOperation type="out" />
-        <CardCreate type="out" />
+        <ListOperation type="out" path="/dashboard/out/list"/>
+        <CardCreate type="out" path="/dashboard/out/new" />
       </main>
     </>
   )

@@ -1,9 +1,8 @@
 import { Provider } from "react-redux";
-import "../styles/app.scss";
-import '../styles/index.scss';
 import { store } from "../src/app";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "../src/components/ProtectedRoute";
+import "../styles/app.scss";
+import '../styles/index.scss';
 
 function MyApp({ Component, pageProps }) {
 

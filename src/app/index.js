@@ -5,7 +5,7 @@ import operationsSlice from "./operations-slice";
 export const store = configureStore({
     reducer: {
         auth: authSlice,
-        operation: operationsSlice
+        operations: operationsSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

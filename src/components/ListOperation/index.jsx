@@ -1,9 +1,14 @@
+import { useRouter } from "next/router";
 import { MdEqualizer } from "react-icons/md";
 import styles from "./styles.module.scss";
 
-export function ListOperation({ type }) {
+export function ListOperation({ type, path }) {
+    const router = useRouter();
+    function handleRedirectToListOuts() {
+        router.push(path);
+    }
     return (
-        <section className={styles.container}>
+        <section className={styles.container} onClick={handleRedirectToListOuts}>
             <h3 className={styles.title}>
                 {type === "entry" ? "Listar entradas" : "Listar saídas"}
             </h3>
