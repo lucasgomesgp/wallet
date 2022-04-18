@@ -1,4 +1,5 @@
 import { BsFillArrowUpCircleFill, BsArrowDownCircleFill } from "react-icons/bs";
+import { formatMoney } from "../../../helpers/currency";
 import styles from "./styles.module.scss";
 
 export default function Operation({ type, text, value }) {
@@ -16,7 +17,7 @@ export default function Operation({ type, text, value }) {
                     }
                 </div>
             </div>
-            <p className={styles.money}>R${value}</p>
+            <p className={styles.money}>{value ? formatMoney(value) : "R$0"}</p>
         </div>
     );
 }

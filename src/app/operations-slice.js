@@ -16,6 +16,49 @@ export const createEntryOrOutOperation = createAsyncThunk(
   }
 );
 
+export const getValuesToHome = createAsyncThunk(
+  "operations/getValuesToHome",
+  async ({ userId }) => {
+    try {
+      const valuesRef = ref(database);
+      const entry = await get(child(valuesRef, `operations/${userId}/entry`));
+      const out = await get(child(valuesRef, `operations/${userId}/out`));
+      const entrys = [];
+      const outs = [];
+      let totalEntrys = 0;
+      let totalOuts = 0;
+      let total = 0;
+      entry.forEach((value) => {
+        let item = value.val();
+        item.key = value.key;
+        totalEntrys += parseFloat(item.value);
+        total+= parseFloat(item.value);
+        entrys.push(item);
+      });
+      out.forEach((value) => {
+        let item = value.val();
+        item.key = value.key;
+        totalOuts += parseFloat(item.value);
+        total-= parseFloat(item.value);
+        outs.push(item);
+      });
+
+      if (entry.exists() && out.exists()) {
+        return {
+          entrys,
+          outs,
+          totalEntrys,
+          totalOuts,
+          total,
+        };
+      }
+    } catch (err) {
+      toast.error("Erro ao buscar os valores!");
+      return err;
+    }
+  }
+);
+
 export const getEntrysOrOuts = createAsyncThunk(
   "operations/getEntryOrOut",
   async ({ userId, type }) => {
@@ -54,12 +97,15 @@ export const removeEntryOrOuts = createAsyncThunk(
     }
   }
 );
+
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
     entry: [],
     outflow: [],
     total: 0,
+    totalEntrys: 0,
+    totalOuts: 0
   },
   reducers: {},
   extraReducers: {
@@ -87,6 +133,18 @@ const operationsSlice = createSlice({
       }
     },
     [getEntrysOrOuts.rejected]: (state, action) => {
+      toast.error("Erro ao buscar!");
+      state.entry = [];
+      state.outflow = [];
+    },
+    [getValuesToHome.fulfilled]: (state, action) => {
+      state.entry = action.payload.entrys;
+      state.outflow = action.payload.outs;
+      state.total = action.payload.total;
+      state.totalEntrys = action.payload.totalEntrys;
+      state.totalOuts = action.payload.totalOuts;
+    },
+    [getValuesToHome.rejected]: (state, action) => {
       toast.error("Erro ao buscar!");
       state.entry = [];
       state.outflow = [];
