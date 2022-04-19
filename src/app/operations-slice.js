@@ -28,6 +28,7 @@ export const getValuesToHome = createAsyncThunk(
       let totalEntrys = 0;
       let totalOuts = 0;
       let total = 0;
+
       entry.forEach((value) => {
         let item = value.val();
         item.key = value.key;
@@ -35,6 +36,7 @@ export const getValuesToHome = createAsyncThunk(
         total+= parseFloat(item.value);
         entrys.push(item);
       });
+
       out.forEach((value) => {
         let item = value.val();
         item.key = value.key;
@@ -43,7 +45,7 @@ export const getValuesToHome = createAsyncThunk(
         outs.push(item);
       });
 
-      if (entry.exists() && out.exists()) {
+      if (entry.exists() || out.exists()) {
         return {
           entrys,
           outs,
@@ -105,7 +107,7 @@ const operationsSlice = createSlice({
     outflow: [],
     total: 0,
     totalEntrys: 0,
-    totalOuts: 0
+    totalOuts: 0,
   },
   reducers: {},
   extraReducers: {
@@ -138,11 +140,13 @@ const operationsSlice = createSlice({
       state.outflow = [];
     },
     [getValuesToHome.fulfilled]: (state, action) => {
-      state.entry = action.payload.entrys;
-      state.outflow = action.payload.outs;
-      state.total = action.payload.total;
-      state.totalEntrys = action.payload.totalEntrys;
-      state.totalOuts = action.payload.totalOuts;
+      if(action.payload !== undefined){
+        state.entry = action.payload.entrys;
+        state.outflow = action.payload.outs;
+        state.total = action.payload.total;
+        state.totalEntrys = action.payload.totalEntrys;
+        state.totalOuts = action.payload.totalOuts;
+      }
     },
     [getValuesToHome.rejected]: (state, action) => {
       toast.error("Erro ao buscar!");
