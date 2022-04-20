@@ -74,14 +74,14 @@ function Dashboard() {
     datasets: [
       {
         label: "Entradas",
-        data: entry.map((current) => current.value) || 0,
+        data: entry !== undefined ? entry.map((current) => current.value) : 0,
         borderColor: "rgb(12, 215, 49)",
         backgroundColor: "rgb(7, 162, 36)",
       },
 
       {
         label: "Saídas",
-        data: out.map((current) => current.value) || 0,
+        data: out !== undefined ? out.map((current) => current.value) : 0,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
