@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { FaMoneyCheckAlt } from "react-icons/fa";
-import { Meta } from "../../src/components/Meta";
-import "chart.js/auto";
 import { Doughnut, Line } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import "chart.js/auto";
+import { Meta } from "../../src/components/Meta";
 import { Header } from "../../src/components/Header";
 import { Navbar } from "../../src/components/Navbar";
-import styles from "./styles.module.scss";
 import Operation from "../../src/components/Operation";
 import protectedRoute from "../../src/components/ProtectedRoute";
-import { useDispatch, useSelector } from "react-redux";
 import { getValuesToHome } from "../../src/app/operations-slice";
 import { formatMoney } from "../../helpers/currency";
+import CountUp from "react-countup";
+import styles from "./styles.module.scss";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -108,7 +109,12 @@ function Dashboard() {
                   <FaMoneyCheckAlt size={40} color="white" />
                 </div>
                 <p className={styles.money}>
-                  {total ? formatMoney(total) : "R$0"}
+                  R$
+                  {total ? (
+                    <CountUp start={0} end={total} decimals={2} separator="." />
+                  ) : (
+                    "0"
+                  )}
                 </p>
               </div>
               <Operation text="Entradas" type="entry" value={totalEntrys} />
