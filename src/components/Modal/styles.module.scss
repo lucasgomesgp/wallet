@@ -1,0 +1,45 @@
+@import "../../../styles/variables";
+
+.container{
+    background-color: $shadow;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: #fff;
+        height: 70%;
+        width: 50%;
+        border-radius: 10px;
+
+        .formControl{
+            width: 80%;
+            height: 2.4rem;
+        }
+
+        .description{
+            resize: none;
+            width: 80%;
+            height: 8rem;
+        }
+
+        .formControl, .description{
+            padding: 1rem;
+        }
+
+        .btn{
+            width: 30%;
+            padding: 1rem;
+        }
+    }
+}
