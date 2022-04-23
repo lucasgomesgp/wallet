@@ -13,6 +13,7 @@ export function FormOperation({ type }) {
     value: yup.string().required("O valor é obrigatório!"),
     description: yup.string().required("A descrição é obrigatória!"),
   });
+  
   const {
     handleSubmit,
     formState: { errors },

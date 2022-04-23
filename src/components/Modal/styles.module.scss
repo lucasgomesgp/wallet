@@ -7,10 +7,11 @@
     z-index: 999;
     position: absolute;
     top: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     .form{
         display: flex;
         align-items: center;
@@ -18,13 +19,28 @@
         flex-direction: column;
         gap: 2rem;
         background-color: #fff;
-        height: 70%;
+        min-height: 90%;
         width: 50%;
         border-radius: 10px;
+        position: relative;
+
+        .btnExit{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.5rem;
+            border-radius: 50px;
+            border: none;
+            background-color: $red;
+        }
 
         .formControl{
             width: 80%;
             height: 2.4rem;
+
+            &:disabled{
+                cursor: not-allowed;
+            }
         }
 
         .description{
@@ -35,6 +51,11 @@
 
         .formControl, .description{
             padding: 1rem;
+            outline: none;
+
+            &:focus{
+                border: 1px solid $primary;
+            }
         }
 
         .btn{
