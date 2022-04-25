@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { TiEdit, TiTrash } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { formatMoney } from "../../../helpers/currency";
+import { TiEdit, TiTrash } from "react-icons/ti";
 import { removeEntryOrOuts } from "../../app/operations-slice";
 import { Modal } from "../Modal";
 import styles from "./styles.module.scss";
 
-export function ListItem({ date, description, value, type, id }) {
+export function ListItem({
+  date,
+  description,
+  value,
+  type,
+  id,
+}) {
   const [status, setToggleStatus] = useState(false);
   const dispatch = useDispatch();
 
@@ -21,9 +29,9 @@ export function ListItem({ date, description, value, type, id }) {
   return (
     <>
       <tr className={styles.line}>
-        <td>{date}</td>
+        <td>{moment(date).format("DD/MM/YY [às] HH:mm")}</td>
         <td>{description}</td>
-        <td>{value}</td>
+        <td>{formatMoney(value)}</td>
         <td>
           <button className={styles.editBtn} onClick={handleEdit}>
             <TiEdit size={35} color="#2F12E0" />

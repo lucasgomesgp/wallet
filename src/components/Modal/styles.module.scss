@@ -19,11 +19,11 @@
         flex-direction: column;
         gap: 2rem;
         background-color: #fff;
-        min-height: 90%;
+        height: 90%;
         width: 50%;
         border-radius: 10px;
         position: relative;
-
+        padding: 1rem;
         .btnExit{
             position: absolute;
             top: 10px;
@@ -61,6 +61,11 @@
         .btn{
             width: 30%;
             padding: 1rem;
+        }
+        .errorSmall{
+            font-size: 0.8rem;
+            color: $red;
+            font-weight: bold;
         }
     }
 }

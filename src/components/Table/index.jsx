@@ -1,6 +1,4 @@
-import moment from "moment";
 import { ListItem } from "../ListItem";
-import { formatMoney } from "../../../helpers/currency";
 import styles from "./styles.module.scss";
 import { Loading } from "../Loading";
 
@@ -20,9 +18,9 @@ export function Table({ data, type, title }) {
         <tbody>
           {data.map(({ date, description, value, id, key }) => (
             <ListItem
-              date={moment(date).format("DD/MM/YY [às] HH:mm")}
+              date={date}
               description={description}
-              value={formatMoney(value)}
+              value={value}
               type={type}
               id={key}
               key={id}
