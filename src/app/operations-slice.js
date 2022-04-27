@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ref, set, child, get } from "firebase/database";
+import { ref, set, child, get, remove } from "firebase/database";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { database } from "../../services/firebase.config";
@@ -13,6 +13,51 @@ export const createEntryOrOutOperation = createAsyncThunk(
       description,
       date,
     });
+  }
+);
+
+export const getValuesToHome = createAsyncThunk(
+  "operations/getValuesToHome",
+  async ({ userId }) => {
+    try {
+      const valuesRef = ref(database);
+      const entry = await get(child(valuesRef, `operations/${userId}/entry`));
+      const out = await get(child(valuesRef, `operations/${userId}/out`));
+      const entrys = [];
+      const outs = [];
+      let totalEntrys = 0;
+      let totalOuts = 0;
+      let total = 0;
+
+      entry.forEach((value) => {
+        let item = value.val();
+        item.key = value.key;
+        totalEntrys += parseFloat(item.value);
+        total += parseFloat(item.value);
+        entrys.push(item);
+      });
+
+      out.forEach((value) => {
+        let item = value.val();
+        item.key = value.key;
+        totalOuts += parseFloat(item.value);
+        total -= parseFloat(item.value);
+        outs.push(item);
+      });
+
+      if (entry.exists() || out.exists()) {
+        return {
+          entrys,
+          outs,
+          totalEntrys,
+          totalOuts,
+          total,
+        };
+      }
+    } catch (err) {
+      toast.error("Erro ao buscar os valores!");
+      return err;
+    }
   }
 );
 
@@ -40,12 +85,45 @@ export const getEntrysOrOuts = createAsyncThunk(
   }
 );
 
+export const removeEntryOrOuts = createAsyncThunk(
+  "operations/removeEntryOrOuts",
+  async ({ userId, type, key }) => {
+    try {
+      await remove(ref(database, `operations/${userId}/${type}/${key}`));
+      toast.success("Removido com sucesso!");
+    } catch (err) {
+      toast.error(
+        `Erro ao remover a ${type === "entry" ? "entrada" : "saída"}!`
+      );
+      return err;
+    }
+  }
+);
+
+export const updateEntrysOrOuts = createAsyncThunk(
+  "operations/updateEntrysOrOuts",
+  async ({ userId, type, uuid, idOperation, date, value, description }) => {
+    try {
+      set(ref(database, `operations/${userId}/${type}/${idOperation}`), {
+        id: uuid,
+        value,
+        description,
+        date,
+      });
+    } catch (err) {
+      return err;
+    }
+  }
+);
+
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
     entry: [],
     outflow: [],
     total: 0,
+    totalEntrys: 0,
+    totalOuts: 0,
   },
   reducers: {},
   extraReducers: {
@@ -76,6 +154,33 @@ const operationsSlice = createSlice({
       toast.error("Erro ao buscar!");
       state.entry = [];
       state.outflow = [];
+    },
+    [getValuesToHome.fulfilled]: (state, action) => {
+      if (action.payload !== undefined) {
+        state.entry = action.payload.entrys;
+        state.outflow = action.payload.outs;
+        state.total = action.payload.total;
+        state.totalEntrys = action.payload.totalEntrys;
+        state.totalOuts = action.payload.totalOuts;
+      }
+    },
+    [getValuesToHome.rejected]: (state, action) => {
+      toast.error("Erro ao buscar!");
+      state.entry = [];
+      state.outflow = [];
+    },
+    [removeEntryOrOuts.fulfilled]: (state, action) => {
+      window.location.reload();
+    },
+    [removeEntryOrOuts.rejected]: (state, action) => {
+      window.location.reload();
+    },
+    [updateEntrysOrOuts.fulfilled]: () => {
+        window.location.reload();
+        toast.success("Atualização realizada com sucesso!");
+    },
+    [updateEntrysOrOuts.rejected]: () => {
+      toast.error("Erro ao atualizar!");
     },
   },
 });

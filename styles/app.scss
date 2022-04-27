@@ -1,3 +1,5 @@
+@import "./variables";
+
 .input-form {
     flex: 1;
     width: 350px;
@@ -58,4 +60,10 @@ input[type=checkbox]{
 
 a{
     text-decoration: none;
+}
+
+.error{
+    font-size: 1rem;
+    color: $red;
+    font-weight: bold;
 }

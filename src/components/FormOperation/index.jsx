@@ -8,15 +8,17 @@ import styles from "./styles.module.scss";
 export function FormOperation({ type }) {
   const userId = useSelector((state) => state.auth.user.uid);
   const dispatch = useDispatch();
+  
   const schema = yup.object({
     date: yup.string().required("A data é obrigatória!"),
     value: yup.string().required("O valor é obrigatório!"),
     description: yup.string().required("A descrição é obrigatória!"),
   });
+  
   const {
-    handleSubmit,
-    formState: { errors },
     register,
+    formState: { errors },
+    handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
   });

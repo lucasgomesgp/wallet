@@ -21,7 +21,7 @@ function ListOut() {
       <Meta title="List Out's" />
       <Header />
       <Navbar />
-      <Table data={outflow} title="Listagem de saídas" />
+      <Table data={outflow} type="out" title="Listagem de saídas" />
     </>
   );
 }
