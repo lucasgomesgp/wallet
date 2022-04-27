@@ -13,6 +13,7 @@ export function ListItem({
   value,
   type,
   id,
+  uuid,
 }) {
   const [status, setToggleStatus] = useState(false);
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export function ListItem({
       {status ? (
         <Modal
           idItem={id}
+          uuid={uuid}
           type={type}
           key={id}
           description={description}

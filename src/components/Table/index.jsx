@@ -24,6 +24,7 @@ export function Table({ data, type, title }) {
               type={type}
               id={key}
               key={id}
+              uuid={id}
             />
           ))}
         </tbody>

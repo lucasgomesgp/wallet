@@ -33,7 +33,7 @@ export const getValuesToHome = createAsyncThunk(
         let item = value.val();
         item.key = value.key;
         totalEntrys += parseFloat(item.value);
-        total+= parseFloat(item.value);
+        total += parseFloat(item.value);
         entrys.push(item);
       });
 
@@ -41,7 +41,7 @@ export const getValuesToHome = createAsyncThunk(
         let item = value.val();
         item.key = value.key;
         totalOuts += parseFloat(item.value);
-        total-= parseFloat(item.value);
+        total -= parseFloat(item.value);
         outs.push(item);
       });
 
@@ -100,6 +100,22 @@ export const removeEntryOrOuts = createAsyncThunk(
   }
 );
 
+export const updateEntrysOrOuts = createAsyncThunk(
+  "operations/updateEntrysOrOuts",
+  async ({ userId, type, uuid, idOperation, date, value, description }) => {
+    try {
+      set(ref(database, `operations/${userId}/${type}/${idOperation}`), {
+        id: uuid,
+        value,
+        description,
+        date,
+      });
+    } catch (err) {
+      return err;
+    }
+  }
+);
+
 const operationsSlice = createSlice({
   name: "operations",
   initialState: {
@@ -140,7 +156,7 @@ const operationsSlice = createSlice({
       state.outflow = [];
     },
     [getValuesToHome.fulfilled]: (state, action) => {
-      if(action.payload !== undefined){
+      if (action.payload !== undefined) {
         state.entry = action.payload.entrys;
         state.outflow = action.payload.outs;
         state.total = action.payload.total;
@@ -158,6 +174,13 @@ const operationsSlice = createSlice({
     },
     [removeEntryOrOuts.rejected]: (state, action) => {
       window.location.reload();
+    },
+    [updateEntrysOrOuts.fulfilled]: () => {
+        window.location.reload();
+        toast.success("Atualização realizada com sucesso!");
+    },
+    [updateEntrysOrOuts.rejected]: () => {
+      toast.error("Erro ao atualizar!");
     },
   },
 });

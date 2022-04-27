@@ -1,4 +1,5 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 .container{
     background-color: $shadow;
@@ -11,19 +12,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .form{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         background-color: #fff;
         height: 90%;
         width: 50%;
         border-radius: 10px;
         position: relative;
         padding: 1rem;
+
         .btnExit{
             position: absolute;
             top: 10px;
@@ -59,8 +61,13 @@
         }
 
         .btn{
-            width: 30%;
-            padding: 1rem;
+            @include buttonOperation;
+            background-color: $green-light;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: $white;
+            letter-spacing: 0.1rem;
         }
         .errorSmall{
             font-size: 0.8rem;
