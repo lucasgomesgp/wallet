@@ -104,7 +104,7 @@
 
 ---
 ## :desktop_computer: Como usar
--- É necessário a criação de uma aplicação Web no Firebase, utilização do Realtime Database e preenchimento das chaves abaixo
+- É necessário a criação de uma aplicação Web no Firebase, utilização do Realtime Database e preenchimento das chaves abaixo
 ```
 NEXT_PUBLIC_API_KEY=
 NEXT_PUBLIC_AUTH_DOMAIN=
@@ -114,11 +114,11 @@ NEXT_PUBLIC_STORAGE_BUCKET=
 NEXT_PUBLIC_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_APP_ID=
 ```
--- Após isso é necessário rodar no terminal o comando abaixo:
+- Após isso é necessário rodar no terminal o comando abaixo:
 ```
     yarn dev
 ```
--- Abrir uma aba no navegador e digitar localhost:3000
+- Abrir uma aba no navegador e digitar localhost:3000
 ---
 ## :spiral_notepad: License
 Arquivos sob a licença [MIT](https://github.com/lucasgomesgp) criado por Lucas Gomes.
